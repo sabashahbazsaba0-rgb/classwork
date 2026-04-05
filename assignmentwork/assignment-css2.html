@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Profile</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial;
+        }
+
+        body {
+            background: #eef2f7;
+        }
+
+        /* Header */
+        header {
+            background: #1e293b;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+
+        /* Layout */
+        .main {
+            display: flex;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 220px;
+            background: #0f172a;
+            min-height: 100vh;
+            color: white;
+            padding: 20px;
+        }
+
+        .sidebar h3 {
+            margin-bottom: 15px;
+            color: #38bdf8;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar ul li {
+            padding: 10px;
+            margin: 5px 0;
+            background: #1e293b;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .sidebar ul li:hover {
+            background: #38bdf8;
+            color: black;
+        }
+
+        /* Content */
+        .content {
+            flex: 1;
+            padding: 20px;
+        }
+
+        /* Profile */
+        .profile {
+            background: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px #ccc;
+        }
+
+        .profile img {
+            width: 120px;
+            border-radius: 50%;
+        }
+
+        /* Sections */
+        .section {
+            background: white;
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px #ccc;
+        }
+
+        /* Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+
+        th {
+            background: #1e293b;
+            color: white;
+        }
+
+        /* Form */
+        input,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            background: #38bdf8;
+            color: black;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0ea5e9;
+        }
+
+        /* Footer */
+        footer {
+            background: #1e293b;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Student Profile</h1>
+    </header>
+
+    <div class="main">
+
+        <!-- SIDEBAR (Your Code Improved) -->
+        <div class="sidebar">
+            <h3>Sidebar Menu</h3>
+            <ul>
+                <li>Home</li>
+                <li>About</li>
+                <li>Services</li>
+                <li>Contact</li>
+            </ul>
+        </div>
+
+        <!-- MAIN CONTENT -->
+        <div class="content">
+
+            <div class="profile">
+                <img src="images/ra.jpg">
+                <h2>SABA SHAHBAZ</h2>
+                <p>Web Development Student</p>
+            </div>
+
+            <div class="section">
+                <h2>About Me</h2>
+                <p>I am a student learning web development and<em> creating modern websites</em>.We are providing web projects get expert insights on the different types of<div><b> web development services and their business</b></div> impact on <br><mark> software companies and enterprises</mark>.<br>Discover the essentials of web development for businesses: <div>from diverse <em>development types, <i>emerging trends<br><b> and analytics, to SEO</b><br>security</i></em>and more.</div> </p>
+
+
+
+            </div>
+
+            <div class="section">
+                <h2>Skills</h2>
+                <ul>
+                    <li>HTML</li>
+                    <li>CSS</li>
+                    <li>JavaScript (Basic)</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>Marks</h2>
+                <table>
+                    <tr>
+                        <th>Subject</th>
+                        <th>Marks</th>
+                        <th>Grade</th>
+                    </tr>
+                    <tr>
+                        <td>Math</td>
+                        <td>85</td>
+                        <td>A</td>
+                    </tr>
+                    <tr>
+                        <td>English</td>
+                        <td>78</td>
+                        <td>B</td>
+                    </tr>
+                    <tr>
+                        <td>Computer</td>
+                        <td>90</td>
+                        <td>A+</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="section">
+                <h2>Contact</h2>
+                <form>
+                    <input type="text" placeholder="Name">
+                    <input type="email" placeholder="Email">
+                    <textarea placeholder="Message"></textarea>
+                    <button>Submit</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <div class="text">
+            <h5 class="card-header">Web development project</h5>
+            <p>01-April-2026 assignment</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>

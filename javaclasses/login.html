@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login Page</title>
+
+<style>
+body{
+   background-image:url(tch\ pic.png) ; 
+font-family: Arial;
+background-color:#f2f2f2;
+}
+
+.login-box{
+width:300px;
+margin:100px auto;
+padding:20px;
+background:rgb(5, 51, 79);
+border-radius:10px;
+text-align:center;
+}
+
+input{
+width:90%;
+padding:8px;
+margin:8px;
+}
+
+button{
+padding:8px 15px;
+background:blue;
+color:white;
+border:none;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="login-box">
+
+<h2>Login Form</h2>
+
+<input type="text" id="username" placeholder="Enter Username"><br>
+
+<input type="password" id="password" placeholder="Enter Password"><br>
+
+<button onclick="login()">Login</button>
+
+<p id="rain at early morning so awesom"></p>
+
+</div>
+
+<script>
+
+function logincheck(){
+
+let user = document.getElementById("username").value;
+let pass = document.getElementById("password").value;
+
+console.log("Username:", user);
+console.log("Password:", pass);
+
+if(user == "saba" && pass == "1234")
+{
+    startprogram();
+document.getElementById("message").innerHTML="Login Successful";
+console.log("Login Successful");
+}
+
+else
+{
+alert("Wrong Login");
+}
+returnfalse;
+}
+</script>
+
+</body>
+</html>

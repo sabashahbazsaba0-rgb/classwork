@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>JavaScript Functions with Buttons</title>
+
+<script>
+function showMessage() {
+    document.getElementById("result").innerHTML = "Hello! You clicked Button 1";
+}
+
+function changeColor() {
+    document.body.style.backgroundColor = "lightblue";
+}
+
+function showDate() {
+    document.getElementById("result").innerHTML = Date();
+}
+
+function resetPage() {
+    document.body.style.backgroundColor = "white";
+    document.getElementById("result").innerHTML = "Page Reset";
+}
+</script>
+
+</head>
+
+<body>
+
+<h2>JavaScript Functions Example</h2>
+
+<button onclick="showMessage()">Button 1</button>
+
+<button onclick="changeColor()">Button 2</button>
+
+<button onclick="showDate()">Button 3</button>
+
+<button onclick="resetPage()">Reset</button>
+
+<p id="result"></p>
+
+</body>
+</html>

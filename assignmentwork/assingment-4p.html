@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Advanced Quiz App</title>
+
+<style>
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-image:url(cator.jfif) ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Container */
+.container {
+    width: 420px;
+    padding: 25px;
+    border-radius: 15px;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    color: white;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+}
+
+/* Progress Bar */
+.progress {
+    height: 8px;
+    background: rgba(255,255,255,0.3);
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.progress-bar {
+    height: 100%;
+    background: #00ffcc;
+    width: 0%;
+    border-radius: 10px;
+}
+
+/* Question */
+.question {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+/* Options */
+.option {
+    background: rgba(255,255,255,0.2);
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.option:hover {
+    background: rgba(255,255,255,0.4);
+}
+
+.selected {
+    background: #00ffcc;
+    color: black;
+}
+
+/* Buttons */
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    background: #00ffcc;
+    font-weight: bold;
+}
+
+.timer {
+    text-align: right;
+    margin-bottom: 10px;
+}
+
+/* Result */
+.result {
+    text-align: center;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<div id="quizBox">
+
+<div class="progress">
+<div class="progress-bar" id="progressBar"></div>
+</div>
+
+<div class="timer">Time: <span id="time">10</span>s</div>
+
+<div id="question" class="question"></div>
+<div id="options"></div>
+
+<div class="buttons">
+<button id="prevBtn">Prev</button>
+<button id="nextBtn">Next</button>
+</div>
+
+</div>
+
+<div id="resultBox" class="result" style="display:none;">
+<h2 id="score"></h2>
+<h3 id="status"></h3>
+<button onclick="restartQuiz()">Restart</button>
+</div>
+
+</div>
+
+<script>
+const quizData = [
+    {
+        question: "What is HTML?",
+        options: ["Programming", "Markup", "Database", "Server"],
+        correct: 1
+    },
+    {
+        question: "CSS is used for?",
+        options: ["Logic", "Structure", "Styling", "Database"],
+        correct: 2
+    },
+    {
+        question: "JavaScript is?",
+        options: ["Language", "Style", "Server", "Database"],
+        correct: 0
+    },
+    {
+        question: "Which tag is paragraph?",
+        options: ["<p>", "<h1>", "<div>", "<span>"],
+        correct: 0
+    },
+    {
+        question: "Event example?",
+        options: ["onclick", "oncolor", "onfont", "onstyle"],
+        correct: 0
+    }
+];
+
+let current = 0;
+let answers = new Array(quizData.length).fill(null);
+let timer;
+let timeLeft = 10;
+
+/* Load Question */
+function loadQuestion() {
+    const q = quizData[current];
+    document.getElementById("question").innerText = q.question;
+
+    const optionsDiv = document.getElementById("options");
+    optionsDiv.innerHTML = "";
+
+    q.options.forEach((opt, index) => {
+        const div = document.createElement("div");
+        div.classList.add("option");
+        div.innerText = opt;
+
+        if (answers[current] === index) {
+            div.classList.add("selected");
+        }
+
+        div.onclick = () => selectOption(index);
+        optionsDiv.appendChild(div);
+    });
+
+    updateProgress();
+    resetTimer();
+}
+
+/* Select Option */
+function selectOption(index) {
+    answers[current] = index;
+    loadQuestion();
+}
+
+/* Next */
+document.getElementById("nextBtn").addEventListener("click", () => {
+    if (answers[current] === null) {
+        alert("Select an option first!");
+        return;
+    }
+
+    if (current < quizData.length - 1) {
+        current++;
+        loadQuestion();
+    } else {
+        showResult();
+    }
+});
+
+/* Prev */
+document.getElementById("prevBtn").addEventListener("click", () => {
+    if (current > 0) {
+        current--;
+        loadQuestion();
+    }
+});
+
+/* Progress */
+function updateProgress() {
+    let percent = ((current + 1) / quizData.length) * 100;
+    document.getElementById("progressBar").style.width = percent + "%";
+}
+
+/* Timer */
+function resetTimer() {
+    clearInterval(timer);
+    timeLeft = 10;
+    document.getElementById("time").innerText = timeLeft;
+
+    timer = setInterval(() => {
+        timeLeft--;
+        document.getElementById("time").innerText = timeLeft;
+
+        if (timeLeft === 0) {
+            clearInterval(timer);
+            if (current < quizData.length - 1) {
+                current++;
+                loadQuestion();
+            } else {
+                showResult();
+            }
+        }
+    }, 1000);
+}
+
+/* Result */
+function showResult() {
+    clearInterval(timer);
+
+    let score = 0;
+
+    quizData.forEach((q, i) => {
+        if (answers[i] === q.correct) score++;
+    });
+
+    let percent = (score / quizData.length) * 100;
+
+    document.getElementById("quizBox").style.display = "none";
+    document.getElementById("resultBox").style.display = "block";
+
+    document.getElementById("score").innerText = 
+        `Score: ${score}/${quizData.length} (${percent}%)`;
+
+    let status = percent >= 60 ? "PASS 🎉" : "FAIL ❌";
+    document.getElementById("status").innerText = status;
+}
+
+/* Restart */
+function restartQuiz() {
+    current = 0;
+    answers.fill(null);
+    document.getElementById("quizBox").style.display = "block";
+    document.getElementById("resultBox").style.display = "none";
+    loadQuestion();
+}
+
+loadQuestion();
+</script>
+
+</body>
+</html>

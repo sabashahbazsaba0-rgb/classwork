@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+</head>
+<body>
+<style>
+body{
+font-family: Arial;
+
+}
+#box{
+width:100px ;
+height:100px;
+padding:30px ;
+background-color: brown;
+text-align: center;
+line-height:100px ;
+margin: 10px;
+border:2px solid black ;
+
+}
+
+
+</style>
+<h1 id="title">jqurey</h1>
+<p id="text">Hi! this is jqurey paractice</p>
+
+<button id="btnfor">addbutton</button>
+<button id="btnshow">show</button>
+<button id="btnupper">hide</button>
+<button id="btnlower">toggle</button>
+<button id="hye">slider</button>
+<div id="box">box</div>
+
+<script>
+$("#btnfor").click(function(){
+alert("button clicked");
+})
+$("#btnshow").click(function(){
+  $("#box").show();  
+})
+$("#btnupper").click(function(){
+ $("#box").hide();   
+})
+$("#btnlower").click(function(){
+$("#box").toggle();
+})
+$("#hye").click(function(){
+$("#box").slideToggle();
+
+})
+
+</script>
+
+    
+</body>
+</html>

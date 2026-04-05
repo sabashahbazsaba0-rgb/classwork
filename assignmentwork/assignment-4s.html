@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Professional Quiz App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image:url(images/cator.jfif) ;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .quiz-container {
+            background: white;
+            width: 400px;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .question {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .option {
+            margin: 10px 0;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #4facfe;
+            border: none;
+            color: white;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #007bff;
+        }
+
+        .result {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="quiz-container">
+    <h2>Quiz App</h2>
+
+    <div id="quiz">
+        <div class="question" id="question">Question</div>
+
+        <div id="options"></div>
+
+        <button id="nextBtn">Next</button>
+    </div>
+
+    <div id="result" class="result" style="display:none;">
+        <h3 id="scoreText"></h3>
+        <h4 id="statusText"></h4>
+    </div>
+</div>
+
+<script>
+    // Questions Array
+    const quizData = [
+        {
+            question: "What is HTML?",
+            options: ["Programming Language", "Markup Language", "Database", "Server"],
+            correct: 1
+        },
+        {
+            question: "What is CSS used for?",
+            options: ["Structure", "Styling", "Database", "Logic"],
+            correct: 1
+        },
+        {
+            question: "Which is JavaScript?",
+            options: ["Markup", "Programming Language", "Style Sheet", "Database"],
+            correct: 1
+        },
+        {
+            question: "Which tag is used for paragraph?",
+            options: ["<div>", "<p>", "<h1>", "<span>"],
+            correct: 1
+        },
+        {
+            question: "Which is used for events?",
+            options: ["onclick", "onstyle", "oncolor", "onfont"],
+            correct: 0
+        }
+    ];
+
+    let currentQuestion = 0;
+    let score = 0;
+
+    const questionEl = document.getElementById("question");
+    const optionsEl = document.getElementById("options");
+    const nextBtn = document.getElementById("nextBtn");
+    const resultDiv = document.getElementById("result");
+    const scoreText = document.getElementById("scoreText");
+    const statusText = document.getElementById("statusText");
+
+    // Load Question
+    function loadQuestion() {
+        const q = quizData[currentQuestion];
+        questionEl.innerText = q.question;
+
+        optionsEl.innerHTML = "";
+
+        q.options.forEach((opt, index) => {
+            const div = document.createElement("div");
+            div.classList.add("option");
+
+            div.innerHTML = `
+                <input type="radio" name="option" value="${index}">
+                ${opt}
+            `;
+
+            optionsEl.appendChild(div);
+        });
+    }
+
+    // Next Button Click
+    nextBtn.addEventListener("click", () => {
+        const selected = document.querySelector('input[name="option"]:checked');
+
+        // Validation
+        if (!selected) {
+            alert("Please select an option!");
+            return;
+        }
+
+        const answer = parseInt(selected.value);
+
+        if (answer === quizData[currentQuestion].correct) {
+            score++;
+        }
+
+        currentQuestion++;
+
+        if (currentQuestion < quizData.length) {
+            loadQuestion();
+        } else {
+            showResult();
+        }
+    });
+
+    // Show Result
+    function showResult() {
+        document.getElementById("quiz").style.display = "none";
+        resultDiv.style.display = "block";
+
+        scoreText.innerText = `Your Score: ${score} / ${quizData.length}`;
+
+        if (score >= 3) {
+            statusText.innerText = "Result: PASS 🎉";
+            statusText.style.color = "green";
+        } else {
+            statusText.innerText = "Result: FAIL ❌";
+            statusText.style.color = "red";
+        }
+    }
+
+    // Start Quiz
+    loadQuestion();
+</script>
+
+</body>
+</html>

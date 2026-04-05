@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Student Management System</title>
+
+  <!-- jQuery CDN -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <style>
+    /* Inner CSS */
+    body {
+      font-family: Arial;
+      background-color: #087164;
+      padding: 20px;
+    }
+
+    .container {
+      width: 700px;
+      margin: auto;
+      background: rgb(138, 214, 17);
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    input {
+      padding: 8px;
+      margin: 5px;
+      width: 30%;
+    }
+
+    button {
+      padding: 8px 12px;
+      background-color: #61b7ec;
+      color: rgb(120, 22, 147);
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #218838;
+    }
+
+    table {
+      width: 100%;
+      margin-top: 20px;
+      border-collapse: collapse;
+    }
+
+    table,
+    th,
+    td {
+      border: 1px solid #5e881b;
+    }
+
+    th,
+    td {
+      padding: 10px;
+      text-align: center;
+    }
+
+    .delete-btn {
+      background-color: red;
+      color: white;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+
+    .delete-btn:hover {
+      background-color: darkred;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <div class="container">
+    <h2>Student Management System</h2>
+
+    <!-- Input Fields -->
+    <input type="text" id="name" placeholder="Student Name">
+    <input type="text" id="course" placeholder="Course">
+    <input type="number" id="marks" placeholder="Marks">
+    <button id="addStudent">Add Student</button>
+
+    <!-- Table -->
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Course</th>
+          <th>Marks</th>
+          <th>Grade</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="studentTable">
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    $(document).ready(function () {
+
+      // Function to calculate grade
+      function getGrade(marks) {
+        if (marks >= 90) return "A";
+        else if (marks >= 75) return "B";
+        else if (marks >= 50) return "C";
+        else return "Fail";
+      }
+
+      // Add Student
+      $("#addStudent").click(function () {
+        let name = $("#name").val();
+        let course = $("#course").val();
+        let marks = $("#marks").val();
+
+        if (name === "" || course === "" || marks === "") {
+          alert("Please fill all fields");
+          return;
+        }
+
+        let grade = getGrade(parseInt(marks));
+
+        let row = `
+            <tr>
+                <td>${name}</td>
+                <td>${course}</td>
+                <td>${marks}</td>
+                <td>${grade}</td>
+                <td><button class="delete-btn">Delete</button></td>
+            </tr>
+        `;
+
+        $("#studentTable").append(row);
+
+        // Clear inputs
+        $("#name").val("");
+        $("#course").val("");
+        $("#marks").val("");
+      });
+
+      // Delete Student (Event Delegation)
+      $("#studentTable").on("click", ".delete-btn", function () {
+        $(this).closest("tr").remove();
+      });
+
+    });
+  </script>
+
+</body>
+
+</html>

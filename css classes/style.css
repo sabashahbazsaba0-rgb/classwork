@@ -1,0 +1,76 @@
+body{
+background-color: yellow;
+font-size: 77;
+color: green;
+margin:0;
+}
+
+/* text click color change */
+p:active{
+color: red;
+}
+
+/* Top Navigation Bar */
+#topnav{
+background-color:black;
+padding:10px;
+text-align:center;
+}
+
+#topnav a{
+color:white;
+text-decoration:none;
+margin:20px;
+font-size:70;
+}
+
+/* Left Navigation Bar */
+.leftnav{
+position:fixed;
+top:50px;
+left:0;
+width:200px;
+height:100%;
+background-color:gray;
+padding-top:20px;
+}
+
+.leftnav a{
+display:block;
+color:white;
+padding:10px;
+text-decoration:none;
+}
+
+/* Image hover position change */
+img{
+position:relative;
+transition:0.5s;
+}
+
+img:hover{
+left:50px;
+top:20px;
+}
+
+/* Center form */
+.form-container{
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+form{
+background:white;
+padding:30px;
+border-radius:10px;
+font-size:18px;
+}
+
+input{
+display:block;
+margin:10px 0;
+padding:8px;
+width:200px;
+}
