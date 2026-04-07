@@ -1,0 +1,4 @@
+git init ,git add , git commit-m(link file),git remote add origion (link from git),git branch -M main ,git push -u origin main
+git init
+git add
+git commit -m"(link page)commiting code of class work"
